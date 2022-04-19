@@ -7,3 +7,5 @@
 /state-wal
 /cache
 /tmp
+
+.DS_Store

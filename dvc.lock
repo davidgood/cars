@@ -4,7 +4,7 @@ stages:
     cmd: python src/models/train_model.py
     deps:
     - path: data/processed
-      md5: e6f1381f2ecf589a30a98aed50ccbf3b.dir
+      md5: 6886611719a4812b715c10a68da30f2f.dir
       size: 28646132
       nfiles: 1
     - path: src/models/train_model.py
@@ -12,9 +12,9 @@ stages:
       size: 0
     outs:
     - path: models
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: 212652b64a51af865ef1386a70cb7888.dir
+      size: 15861826026
+      nfiles: 1
     - path: reports/training_metrics.txt
       md5: d41d8cd98f00b204e9800998ecf8427e
       size: 0
@@ -22,13 +22,13 @@ stages:
     cmd: python src/models/predict_model.py
     deps:
     - path: data/processed
-      md5: e6f1381f2ecf589a30a98aed50ccbf3b.dir
+      md5: 6886611719a4812b715c10a68da30f2f.dir
       size: 28646132
       nfiles: 1
     - path: models
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: 212652b64a51af865ef1386a70cb7888.dir
+      size: 15861826026
+      nfiles: 1
     - path: src/models/predict_model.py
       md5: d41d8cd98f00b204e9800998ecf8427e
       size: 0
@@ -48,6 +48,6 @@ stages:
       size: 0
     outs:
     - path: data/processed
-      md5: e6f1381f2ecf589a30a98aed50ccbf3b.dir
+      md5: 6886611719a4812b715c10a68da30f2f.dir
       size: 28646132
       nfiles: 1
