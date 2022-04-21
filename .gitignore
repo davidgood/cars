@@ -92,3 +92,14 @@ coverage.xml
 /etc/
 /share/
 /models
+
+venv/
+
+*.pyc
+
+instance/
+
+.pytest_cache/
+
+dist/
+build/
