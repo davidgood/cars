@@ -3,13 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <title>The Boomin' System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#make').change(function() {
+
+          let make = $('#make').val();
+          console.log(make)
+            $.ajax({
+              url: '/get_models/' + make,
+              dataType: 'json',
+                data: '',
+              success: function(data) {
+                  console.log("success");
+                  $('#model').empty();
+                  console.log(data);
+                  $('#model').html(data.responseText);
+              },
+              error: function(err) {
+                  console.log("error");
+                  $('#model').empty();
+                  console.log(err);
+                  $('#model').html(err.responseText);
+              }
+            });
+        });
+      });
+    </script>
+
 </head>
 <body>
-  <form method="post">
-    <label for="vin">VIN</label>
-    <input name="VIN" id="VIN" required>
-    <label for="model">Model</label>
-    <input name="model" id="model" required>
-    <input type="submit" value="Price">
-  </form></body>
+<form action="http://localhost:5000/prediction/price" method="post">
+    <div class="flexbox">
+        <div class="left">
+            <label for="vin">VIN</label>
+        </div>
+        <div class="right">
+            <input name="VIN" id="VIN" required>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="year">Year</label>
+        </div>
+        <div class="right">
+            <input name="year" id="year">
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="mileage">Mileage</label>
+        </div>
+        <div class="right">
+            <input name="mileage" id="mileage" required>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="make">Make</label>
+        </div>
+        <div class="right">
+            <select id="make" name="make">
+                {% for c in makes_list %}
+                <OPTION value={{c.id}}>{{c.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="model">Model</label>
+        </div>
+        <div class="right">
+            <select id="model" name="model">
+                {% for c in models_list %}
+                <OPTION value={{c.id}}>{{c.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="bodytype">Body</label>
+        </div>
+        <div class="right">
+            <select id="bodytype" name="bodytype">
+                {% for c in body_list %}
+                <OPTION value={{c.id}}>{{c.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="horsepower">Horsepower</label>
+        </div>
+        <div class="right">
+            <input name="horsepower" id="horsepower" />
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="cityfuel">City MPG</label>
+        </div>
+        <div class="right">
+            <input name="cityfuel" id="cityfuel" />
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="highwayfuel">Highway MPG</label>
+        </div>
+        <div class="right">
+            <input name="highwayfuel" id="highwayfuel" />
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="engine">Engine</label>
+        </div>
+        <div class="right">
+            <select name="engine" id="engine">
+                {% for c in engine_list %}
+                <OPTION value={{c.id}}>{{c.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="fuel">Fuel</label>
+        </div>
+        <div class="right">
+            <select name="fuel" id="fuel">
+                {% for c in fuel_list %}
+                <OPTION value={{c.id}}>{{c.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="transmission">Transmission</label>
+        </div>
+        <div class="right">
+            <select name="transmission" id="transmission">
+                {% for c in trans_list %}
+                <OPTION value={{c.id}}>{{c.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left">
+            <label for="seating">Seating (3-15)</label>
+        </div>
+        <div class="right">
+            <input name="seating" id="seating" />
+        </div>
+    </div>
+    <div class="flexbox">
+        <div class="left"></div>
+        <div class="right">
+            <input type="submit" value="Price">
+        </div>
+    </div>
+</form>
+</body>
 </html>
+
